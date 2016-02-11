@@ -11,9 +11,8 @@ if __name__ == '__main__':
 
     with open(file_path,'r') as test_cases:
         for test in test_cases:
-            inp = test.rstrip('\n').split(' ')
+            inp = map(int,test.rstrip('\n').split(' '))
+            inp = map(int, inp)
             n,inp = inp[0],inp[1:]
-            inp=map(int,inp)
-            est = round(sum(inp) / int(n),0)
-            ans = sum([abs(x - est) for x in inp])
+            ans=min(sum(abs(x - j) for x in inp) for j in range(1,max(inp)+1))
             print '%.0f' %ans
